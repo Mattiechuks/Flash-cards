@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import GNS303 from './courses/GNS303'
 import PET303 from './courses/PET303'
+import MTH311 from './courses/MTH311'
 
 const courses = [
   { code: 'SWD 311', title: 'Operating System',                    color: '#7c3aed', bg: '#ede9fe', dark: '#3b1f6e', starred: true  },
@@ -69,6 +70,7 @@ function getGreeting() {
 const flashcardPages = {
   'GNS 303': GNS303,
   'PET 303': PET303,
+  'MTH 311': MTH311,
 }
 export default function App() {
   const [selectedPage, setSelectedPage] = useState(null)
