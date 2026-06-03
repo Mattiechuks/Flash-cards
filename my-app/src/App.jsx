@@ -3,6 +3,7 @@ import GNS303 from './courses/GNS303'
 import PET303 from './courses/PET303'
 import MTH311 from './courses/MTH311'
 import AIT313 from './courses/AIT313'
+import AIT311 from './courses/AIT311'
 
 const courses = [
   { code: 'SWD 311', title: 'Operating System',                    color: '#7c3aed', bg: '#ede9fe', dark: '#3b1f6e', starred: true  },
@@ -24,7 +25,6 @@ const sections = [
     icon: '⚡',
     label: 'Flash Cards',
     desc: 'Active recall cards — flip, self-grade, and track your score per topic.',
-    stats: key => `${key === 'SWD 311' ? 100 : key === 'SWD 313' ? 80 : 60} cards`,
     action: 'Study now',
     tag: 'Active recall',
   },
@@ -65,6 +65,7 @@ const flashcardPages = {
   'PET 303': PET303,
   'MTH 311': MTH311,
   'AIT 313': AIT313,
+  'AIT 311': AIT311,
 }
 export default function App() {
   const [selectedPage, setSelectedPage] = useState(null)

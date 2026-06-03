@@ -34,30 +34,27 @@ const sections = [
     icon: '📖',
     label: 'Notes',
     desc: 'All lecture notes organised by topic and date. Searchable and always available.',
-    stats: () => 'Coming soon',
-    action: 'Coming soon',
+    stats: () => '— pages',
+    action: 'Open notes',
     tag: 'Lecture notes',
-    disabled: true,
   },
   {
     id: 'practicals',
     icon: '🔬',
     label: 'Practical Reports',
     desc: 'Lab write-ups with aims, procedures, observations and conclusions.',
-    stats: () => 'Coming soon',
-    action: 'Coming soon',
+    stats: () => '— reports',
+    action: 'View reports',
     tag: 'Lab work',
-    disabled: true,
   },
   {
     id: 'cbt',
     icon: '🎯',
     label: 'CBT Testing',
     desc: 'Mock exams — Objective (MCQ), German-style, and Theory. Timed and scored.',
-    stats: () => 'Coming soon',
-    action: 'Coming soon',
+    stats: () => '3 modes',
+    action: 'Start test',
     tag: 'Exam practice',
-    disabled: true,
   },
 ]
 function getGreeting() {
@@ -267,30 +264,30 @@ export default function App() {
         <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(230px,1fr))', gap:'14px', marginBottom:'36px' }}>
           {sections.map(sec => {
             const isHov = hovered === sec.id
-            const isDisabled = sec.disabled || (sec.id === 'flashcards' && !flashcardPages[activeCourse])
             return (
               <div
                   key={sec.id}
-                  onMouseEnter={() => !isDisabled && setHovered(sec.id)}
+                  onMouseEnter={() => setHovered(sec.id)}
                   onMouseLeave={() => setHovered(null)}
                   onClick={() => {
-                    if (sec.id === 'flashcards' && flashcardPages[activeCourse]) {
-                      setSelectedPage(activeCourse)
+                    if (sec.id === 'flashcards') {
+                      if (flashcardPages[activeCourse]) {
+                        setSelectedPage(activeCourse)
+                      }
                     }
                   }}
                   style={{
-                    background: isDisabled ? T.surface2 : isHov ? (dark ? '#1e1e2a' : accentLight) : T.surface,
-                    border: isDisabled ? `1.5px solid ${T.border}` : isHov ? `2px solid ${accentColor}` : `1.5px solid ${T.border}`,
+                    background: isHov ? (dark ? '#1e1e2a' : accentLight) : T.surface,
+                    border: isHov ? `2px solid ${accentColor}` : `1.5px solid ${T.border}`,
                     borderRadius:'16px',
                     padding:'22px 20px',
-                    cursor: isDisabled ? 'default' : 'pointer',
+                    cursor:'pointer',
                     transition:'all 0.18s ease',
-                    transform: isHov && !isDisabled ? 'translateY(-3px)' : 'none',
+                    transform: isHov ? 'translateY(-3px)' : 'none',
                     display:'flex',
                     flexDirection:'column',
                     gap:'14px',
-                    opacity: isDisabled ? 0.55 : 1,
-                    boxShadow: isHov && !isDisabled ? (dark ? `0 8px 30px ${accentColor}20` : `0 8px 24px ${accentColor}18`) : 'none',
+                    boxShadow: isHov ? (dark ? `0 8px 30px ${accentColor}20` : `0 8px 24px ${accentColor}18`) : 'none',
                   }}
                 >
                 <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start' }}>
@@ -301,11 +298,10 @@ export default function App() {
                     fontSize:'22px',
                   }}>{sec.icon}</div>
                   <span style={{
-                    fontSize:'11px', fontWeight:'700',
-                    color: isDisabled ? T.text3 : accentColor,
-                    background: isDisabled ? T.surface2 : dark ? accentColor+'18' : accentLight,
+                    fontSize:'11px', fontWeight:'700', color:accentColor,
+                    background: dark ? accentColor+'18' : accentLight,
                     padding:'4px 10px', borderRadius:'20px', letterSpacing:'0.3px',
-                    border:`1px solid ${isDisabled ? T.border : accentColor+'30'}`,
+                    border:`1px solid ${accentColor}30`,
                   }}>{sec.tag}</span>
                 </div>
                 <div>
@@ -318,8 +314,8 @@ export default function App() {
                   borderTop:`1px solid ${T.border}`,
                 }}>
                   <span style={{ fontSize:'12px', color:T.text3, fontWeight:'500' }}>{sec.stats(activeCourse)}</span>
-                  <span style={{ fontSize:'13px', fontWeight:'700', color: isDisabled ? T.text3 : accentColor }}>
-                    {typeof sec.action === 'function' ? sec.action(activeCourse) : sec.action} {isDisabled ? '' : '→'}
+                  <span style={{ fontSize:'13px', fontWeight:'700', color: sec.id === 'flashcards' && !flashcardPages[activeCourse] ? T.text3 : accentColor }}>
+                    {typeof sec.action === 'function' ? sec.action(activeCourse) : sec.action} →
                   </span>
                 </div>
               </div>
