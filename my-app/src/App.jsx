@@ -2,6 +2,7 @@ import { useState } from 'react'
 import GNS303 from './courses/GNS303'
 import PET303 from './courses/PET303'
 import MTH311 from './courses/MTH311'
+import AIT313 from './courses/AIT313'
 
 const courses = [
   { code: 'SWD 311', title: 'Operating System',                    color: '#7c3aed', bg: '#ede9fe', dark: '#3b1f6e', starred: true  },
@@ -55,14 +56,6 @@ const sections = [
     tag: 'Exam practice',
   },
 ]
-
-const recentActivity = [
-  { icon: '⚡', text: 'Studied 40 flashcards',        course: 'GNS 303', time: '2h ago'     },
-  { icon: '📖', text: 'Opened Tenses notes',           course: 'GNS 303', time: 'Yesterday'  },
-  { icon: '🎯', text: 'Scored 78% on Concord test',    course: 'GNS 303', time: '2 days ago' },
-  { icon: '🔬', text: 'Submitted Lab report',          course: 'SWD 313', time: '3 days ago' },
-]
-
 function getGreeting() {
   const h = new Date().getHours()
   return h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening'
@@ -71,6 +64,7 @@ const flashcardPages = {
   'GNS 303': GNS303,
   'PET 303': PET303,
   'MTH 311': MTH311,
+  'AIT 313': AIT313,
 }
 export default function App() {
   const [selectedPage, setSelectedPage] = useState(null)
@@ -184,7 +178,7 @@ export default function App() {
             {new Date().toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long' })}
           </p>
           <h1 style={{ fontSize:'clamp(22px,4vw,32px)', fontWeight:'800', margin:'0 0 6px', color:T.text }}>
-            {getGreeting()}, Olise 👋
+            {getGreeting()}, Scholar 👋
           </h1>
           <p style={{ fontSize:'15px', color:T.text2, margin:0 }}>
             Select a course, then choose what you want to do.
@@ -321,69 +315,6 @@ export default function App() {
               </div>
             )
           })}
-        </div>
-
-        {/* ── Bottom Row ── */}
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:'16px' }}>
-
-          {/* Recent Activity */}
-          <div style={{ background:T.surface, border:`1.5px solid ${T.border}`, borderRadius:'16px', padding:'22px 20px' }}>
-            <h3 style={{ fontSize:'14px', fontWeight:'700', margin:'0 0 16px', color:T.text }}>Recent activity</h3>
-            <div style={{ display:'flex', flexDirection:'column', gap:'14px' }}>
-              {recentActivity.map((a, i) => {
-                const c2 = courses.find(c => c.code === a.course) || courses[8]
-                return (
-                  <div key={i} style={{ display:'flex', gap:'12px', alignItems:'flex-start' }}>
-                    <div style={{
-                      width:'36px', height:'36px', borderRadius:'10px',
-                      background: dark ? c2.dark : c2.bg,
-                      display:'flex', alignItems:'center', justifyContent:'center',
-                      fontSize:'16px', flexShrink:0,
-                    }}>{a.icon}</div>
-                    <div style={{ flex:1, minWidth:0 }}>
-                      <p style={{ fontSize:'13px', fontWeight:'600', margin:'0 0 2px', color:T.text, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis' }}>{a.text}</p>
-                      <div style={{ display:'flex', gap:'8px' }}>
-                        <span style={{ fontSize:'11px', color:c2.color, fontWeight:'700' }}>{a.course}</span>
-                        <span style={{ fontSize:'11px', color:T.text3 }}>{a.time}</span>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Quick Access */}
-          <div style={{ background:T.surface, border:`1.5px solid ${T.border}`, borderRadius:'16px', padding:'22px 20px' }}>
-            <h3 style={{ fontSize:'14px', fontWeight:'700', margin:'0 0 16px', color:T.text }}>Quick access</h3>
-            <div style={{ display:'flex', flexDirection:'column', gap:'8px' }}>
-              {[
-                { icon:'⚡', label:'GNS 303 — Flash Cards',              sub:'Last studied 2h ago',       code:'GNS 303' },
-                { icon:'🎯', label:'GNS 303 — Concord Mock Test',        sub:'Scored 78% last time',      code:'GNS 303' },
-                { icon:'📖', label:'SWD 311 — OS Notes',                 sub:'Process management',        code:'SWD 311' },
-                { icon:'📖', label:'SWD 313 — C++ Notes',                sub:'Pointers & OOP',            code:'SWD 313' },
-                { icon:'🎯', label:'Start new practice test',            sub:'Choose mode & course',      code:'SWD 311' },
-              ].map((item, i) => {
-                const c3 = courses.find(c => c.code === item.code) || courses[0]
-                return (
-                  <div key={i} style={{
-                    display:'flex', alignItems:'center', gap:'12px',
-                    padding:'10px 12px', borderRadius:'10px',
-                    border:`1px solid ${T.border}`,
-                    cursor:'pointer', background:T.surface2,
-                    transition:'background 0.12s',
-                  }}>
-                    <span style={{ fontSize:'17px' }}>{item.icon}</span>
-                    <div style={{ flex:1, minWidth:0 }}>
-                      <p style={{ fontSize:'13px', fontWeight:'600', margin:0, color:T.text, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis' }}>{item.label}</p>
-                      <p style={{ fontSize:'11px', color:T.text3, margin:0 }}>{item.sub}</p>
-                    </div>
-                    <span style={{ fontSize:'14px', color:c3.color, flexShrink:0 }}>→</span>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
         </div>
 
         {/* ── CBT Banner ── */}
