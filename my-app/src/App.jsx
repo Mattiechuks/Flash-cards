@@ -5,6 +5,7 @@ import MTH311 from './courses/MTH311'
 import AIT313 from './courses/AIT313'
 import AIT311 from './courses/AIT311'
 import SWD315 from './courses/SWD315'
+import SWD316 from './courses/SWD316'
 
 const courses = [
   { code: 'SWD 311', title: 'Operating System',                    color: '#7c3aed', bg: '#ede9fe', dark: '#3b1f6e', starred: true  },
@@ -72,6 +73,7 @@ const flashcardPages = {
   'AIT 313': AIT313,
   'AIT 311': AIT311,
   'SWD 315': SWD315,
+  'SWD 316': SWD316,
 }
 export default function App() {
   const [selectedPage, setSelectedPage] = useState(null)
