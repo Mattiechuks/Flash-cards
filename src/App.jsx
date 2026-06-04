@@ -4,6 +4,7 @@ import PET303 from './courses/PET303'
 import MTH311 from './courses/MTH311'
 import AIT313 from './courses/AIT313'
 import AIT311 from './courses/AIT311'
+import SWD312 from './courses/SWD312'
 import SWD315 from './courses/SWD315'
 import SWD316 from './courses/SWD316'
 
@@ -77,6 +78,7 @@ const flashcardPages = {
   'MTH 311': MTH311,
   'AIT 313': AIT313,
   'AIT 311': AIT311,
+  'SWD 312': SWD312,
   'SWD 315': SWD315,
   'SWD 316': SWD316,
 }
