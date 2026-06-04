@@ -5,6 +5,7 @@ import MTH311 from './courses/MTH311'
 import AIT313 from './courses/AIT313'
 import AIT311 from './courses/AIT311'
 import SWD315 from './courses/SWD315'
+import SWD316 from './courses/SWD316'
 
 const courses = [
   { code: 'SWD 311', title: 'Operating System',                    color: '#7c3aed', bg: '#ede9fe', dark: '#3b1f6e', starred: true  },
@@ -26,9 +27,14 @@ const sections = [
     icon: '⚡',
     label: 'Flash Cards',
     desc: 'Active recall cards — flip, self-grade, and track your score per topic.',
-    stats: key => flashcardPages[key] ? (key === 'SWD 311' ? 100 : key === 'SWD 313' ? 80 : 60) + ' cards' : 'Coming soon',
-    action: key => flashcardPages[key] ? 'Study now' : 'Not available',
-    tag: 'Active recall',
+    stats: key => {
+          console.log('stats called with key:', key);
+          return flashcardPages[key] ? '✅ ready' : '❌ missing';
+        },
+        action: key => {
+          console.log('action called with key:', key);
+          return flashcardPages[key] ? 'Study now' : 'Not available';
+        },
   },
   {
     id: 'notes',
@@ -72,6 +78,7 @@ const flashcardPages = {
   'AIT 313': AIT313,
   'AIT 311': AIT311,
   'SWD 315': SWD315,
+  'SWD 316': SWD316,
 }
 export default function App() {
   const [selectedPage, setSelectedPage] = useState(null)

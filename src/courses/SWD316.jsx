@@ -245,7 +245,7 @@ const renderAnswer = (text) => {
   return React.createElement('span', { dangerouslySetInnerHTML: { __html: text.replace(/\n/g, '<br>') } });
 };
 
-const SWD316Flashcards = ({ onBack }) => {
+const IntroductionToSoftwareDevelopmentFlashcards = ({ onBack }) => {
   const [activeCat, setActiveCat] = useState("All");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -795,4 +795,4 @@ const SWD316Flashcards = ({ onBack }) => {
   );
 };
 
-export default SWD316Flashcards;
+export default IntroductionToSoftwareDevelopmentFlashcards;

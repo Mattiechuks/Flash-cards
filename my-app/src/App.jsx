@@ -27,9 +27,14 @@ const sections = [
     icon: '⚡',
     label: 'Flash Cards',
     desc: 'Active recall cards — flip, self-grade, and track your score per topic.',
-    stats: key => flashcardPages[key] ? (key === 'SWD 311' ? 100 : key === 'SWD 313' ? 80 : 60) + ' cards' : 'Coming soon',
-    action: key => flashcardPages[key] ? 'Study now' : 'Not available',
-    tag: 'Active recall',
+    stats: key => {
+          console.log('stats called with key:', key);
+          return flashcardPages[key] ? '✅ ready' : '❌ missing';
+        },
+        action: key => {
+          console.log('action called with key:', key);
+          return flashcardPages[key] ? 'Study now' : 'Not available';
+        },
   },
   {
     id: 'notes',
