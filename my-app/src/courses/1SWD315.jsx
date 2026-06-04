@@ -167,7 +167,7 @@ const renderAnswer = (text) => {
   });
 };
 
-export default function SWD315Flashcards({ onBack }) {
+export default function SWD315Flashcards() {
   const [activeCat, setActiveCat] = useState("All");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -266,8 +266,6 @@ export default function SWD315Flashcards({ onBack }) {
     body { background: var(--bg); color: var(--text1); font-family: 'Space Grotesk', sans-serif; min-height: 100vh; }
     .app { min-height: 100vh; display: flex; flex-direction: column; }
     .header { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    .btn-back { background: var(--tag-bg); border: 1px solid var(--border); border-radius: 8px; padding: 6px 14px; color: var(--text2); font-size: 0.82em; font-family: inherit; cursor: pointer; transition: all 0.18s; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
-    .btn-back:hover { border-color: var(--accent); color: var(--accent); }
     .logo { font-family: 'Unbounded', sans-serif; font-size: 1rem; font-weight: 900; color: var(--accent); letter-spacing: -0.02em; }
     .logo span { color: var(--text2); font-weight: 400; font-size: 0.75em; }
     .search-bar { flex: 1; max-width: 300px; background: var(--tag-bg); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; color: var(--text1); font-size: 0.85em; font-family: inherit; outline: none; }
@@ -332,7 +330,6 @@ export default function SWD315Flashcards({ onBack }) {
 
     // Header
     React.createElement('header', { className: 'header' },
-      onBack && React.createElement('button', { className: 'btn-back', onClick: onBack }, '← Back'),
       React.createElement('div', { className: 'logo' }, 'SWD315 ', React.createElement('span', null, 'Data Communication')),
       React.createElement('input', {
         className: 'search-bar',
